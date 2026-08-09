@@ -1,19 +1,26 @@
-# RTL8821CU Wi-Fi Driver for RK3128 TV Box (Kernel 6.6.89+)
+RTL8821CU Wi-Fi Driver cho RK3128 TV Box
+File driver Wi-Fi (8821cu.ko) đã được biên dịch sẵn cho TV Box Rockchip RK3128 chạy Armbian / Linux với Kernel 6.6.89-rk3128+.
 
-Tệp module driver Wi-Fi Realtek RTL8821CU (`8821cu.ko`) đã được biên dịch sẵn (Cross-Compiled) cho các dòng TV Box chip Rockchip RK3128 đang chạy nhân Linux Kernel 6.6.89+.
+1. Cài đặt nhanh trên TV Box
+Mở Terminal trên TV Box và chạy lần lượt các nhóm lệnh sau:
 
-## 🛠 Thông số môi trường biên dịch (System Specs)
-- **SoC:** Rockchip RK3128 (ARM 32-bit / `armhf`)
-- **Kernel Version:** `6.6.89-rk3128+`
-- **Source Kernel:** [linux-kernel-6.6-rk3128-tvbox](https://github.com/chieunhatnang-personal/linux-kernel-6.6-rk3128-tvbox) (nhánh `rk3128-6.6`, config `rk3128_linux_tvbox_defconfig`)
-- **Driver Source:** Realtek RTL8821CU (`morrownr/8821cu-20210916`)
+Bước 1: Tải driver về
+wget https://github.com/TrongDung22/rtl8821cu-driver-rk3128-kernel6.6/raw/main/8821cu.ko -O 8821cu.ko
 
----
+Bước 2: Cài đặt và nạp driver
+sudo cp 8821cu.ko /lib/modules/6.6.89-rk3128+/kernel/drivers/net/wireless/
+sudo depmod -a
+sudo modprobe 8821cu
 
-## 🚀 Hướng dẫn cài đặt nhanh trên TV Box (Quick Install)
+Bước 3: Kết nối Wi-Fi
+Gõ lệnh dưới đây để mở bảng chọn Wi-Fi và nhập mật khẩu:
+sudo nmtui
 
-Mở Terminal trên TV Box và chạy lần lượt các lệnh sau:
+2. Thông số hệ thống
+SoC: Rockchip RK3128 (armhf / 32-bit)
+Kernel Version: 6.6.89-rk3128+
+File cấu hình: rk3128_linux_tvbox_defconfig
 
-### 1. Tải driver về TV Box
-```bash
-wget [https://github.com/TrongDung22/rtl8821cu-rk3128-kernel-6.6/raw/main/8821cu.ko](https://github.com/YOUR_GITHUB_USERNAME/rtl8821cu-rk3128-kernel-6.6/raw/main/8821cu.ko) -O 8821cu.ko
+3. Ghi nhận (Credits)
+Nguồn Kernel: chieunhatnang-personal/linux-kernel-6.6-rk3128-tvbox
+Nguồn Driver: morrownr/8821cu-20210916
